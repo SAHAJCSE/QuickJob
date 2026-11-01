@@ -1,0 +1,1270 @@
+<!-- Job Finder - Profile Screen -->
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Job Finder - Profile Screen</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration to match Job Finder visual aesthetics -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-bg': '#f2f4f8',
+            'app-dark': '#181a20',
+            'app-lime': '#d4ff32',
+            'app-lavender': '#c5c7fa',
+            'app-lavender-light': '#e5e7fc',
+            'app-mint': '#d5f5db',
+            'app-peach': '#ffe2b3',
+            'app-peach-light': '#fff1db',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            '3xl': '28px',
+            '4xl': '36px',
+          },
+          boxShadow: {
+            'floating': '0 12px 35px -8px rgba(0, 0, 0, 0.08)',
+            'lime-glow': '0 8px 20px rgba(212, 255, 50, 0.45)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Additional visual refinement styles -->
+<style data-purpose="base-styling">
+    body {
+      -webkit-tap-highlight-color: transparent;
+      letter-spacing: -0.015em;
+    }
+    /* Hide scrollbar for clean app mockup appearance */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-200 min-h-screen flex items-center justify-center p-0 sm:p-4 text-slate-800 antialiased font-sans select-none">
+<!-- Mobile Screen Frame (iPhone standard 390px ratio container) -->
+<div class="w-full max-w-[393px] h-[852px] bg-app-bg shadow-2xl relative overflow-hidden flex flex-col justify-between sm:rounded-[48px] sm:border-[8px] sm:border-slate-800">
+<!-- Top Status Bar Area (iOS Style Notch Spacing) -->
+<div class="pt-3 px-7 flex justify-between items-center z-20 shrink-0 text-xs font-semibold text-slate-800">
+<span class="tracking-tight">9:41</span>
+<div class="flex items-center space-x-1.5">
+<!-- Cellular Signal Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.58 10.56 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 2c3.87 0 7 3.13 7 7s-3.13 7-7 7-7-3.13-7-7 3.13-7 7-7z"></path></svg>
+<!-- Wifi Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 3.5c3.53 0 6.78 1.34 9.24 3.53L12 19.3 2.76 11.03C5.22 8.84 8.47 7.5 12 7.5z"></path></svg>
+<!-- Battery Icon -->
+<div class="w-5 h-2.5 border border-slate-700 rounded-sm p-0.5 flex items-center">
+<div class="w-full h-full bg-slate-800 rounded-2xs"></div>
+</div>
+</div>
+</div>
+<!-- Scrollable Main Container -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-5 pt-3 pb-28 space-y-5">
+<!-- BEGIN: TopNavigationBar -->
+<nav class="flex items-center justify-between py-1" data-purpose="screen-header">
+<!-- Back Button -->
+<button aria-label="Go back" class="w-12 h-12 bg-app-dark rounded-full flex items-center justify-center text-white active:scale-95 transition-transform shadow-md">
+<svg class="w-5 h-5 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-xl font-black tracking-tight text-app-dark">My Profile</h1>
+<!-- Settings / Options Menu Button -->
+<button aria-label="Settings" class="w-12 h-12 bg-app-dark rounded-full flex items-center justify-center text-white active:scale-95 transition-transform shadow-md">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<circle cx="5" cy="12" r="2"></circle>
+<circle cx="12" cy="12" r="2"></circle>
+<circle cx="19" cy="12" r="2"></circle>
+</svg>
+</button>
+</nav>
+<!-- END: TopNavigationBar -->
+<!-- BEGIN: ProfileHeroCard -->
+<section class="bg-app-lavender rounded-3xl p-5 relative overflow-hidden shadow-sm" data-purpose="profile-card">
+<!-- Playful Background Pastel Bubble Accent -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/25 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center space-x-4 relative z-10">
+<!-- 3D Avatar with Frame -->
+<div class="relative shrink-0">
+<div class="w-20 h-20 rounded-full bg-slate-100 overflow-hidden border-4 border-white shadow-md flex items-start justify-center">
+<img alt="Robert Fox 3D Avatar" class="w-full h-full object-cover object-top scale-110 translate-y-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4vNdnM68n2M8a5_y7WCisepj9GryIwUAKkxd2lSMbarPltAU9Fbxfq_EK9tVZzLGcmQyhMPK_Hmldtf7SRdjh3IKyHPZFmuKZwbR5JQZDukXblMBiwrup8Kh3opStvxcpMB0Rhj5VkguV-FbQPpai_dk_uTeiD0T29i7RiN4IU2JqG7Ctqgp_KDApqMozyrsJsmRmDao6ywVb-QDHZiEVEtfwZ3qAf_buAb4ZeTNJHXGnV6AJTxlu"/>
+</div>
+<!-- Online status indicator -->
+<span class="absolute bottom-0 right-1 w-4 h-4 bg-app-lime border-2 border-white rounded-full"></span>
+</div>
+<!-- User Details -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-1.5">
+<h2 class="text-xl font-black text-app-dark truncate">Robert Fox</h2>
+<!-- Verified Badge -->
+<span class="inline-flex items-center justify-center w-5 h-5 bg-app-dark text-white rounded-full text-[10px]">
+                ✓
+              </span>
+</div>
+<p class="text-xs font-semibold text-slate-700 truncate mt-0.5">Senior Product Designer</p>
+<div class="flex items-center text-[11px] font-medium text-slate-600 mt-1">
+<svg class="w-3.5 h-3.5 mr-1 text-slate-700 shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" fill-rule="evenodd"></path>
+</svg>
+<span>San Francisco, CA (Remote)</span>
+</div>
+</div>
+</div>
+<!-- Hero Card Action Buttons -->
+<div class="mt-4 pt-3 border-t border-white/30 flex items-center justify-between">
+<span class="text-xs font-medium text-slate-700">Open to opportunities</span>
+<button class="px-4 py-2 bg-app-lime text-app-dark font-black text-xs rounded-full shadow-lime-glow active:scale-95 transition-transform flex items-center space-x-1.5">
+<span>Edit Profile</span>
+<svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</section>
+<!-- END: ProfileHeroCard -->
+<!-- BEGIN: StatsTrioCards -->
+<section class="grid grid-cols-3 gap-3" data-purpose="metrics-summary">
+<!-- Stat 1: Applied (Lavender Pastel) -->
+<div class="bg-app-lavender-light p-3.5 rounded-2xl flex flex-col items-center justify-center text-center shadow-xs">
+<span class="text-xl font-black text-app-dark leading-tight">24</span>
+<span class="text-[11px] font-bold text-slate-600 mt-1">Applied</span>
+</div>
+<!-- Stat 2: Shortlisted (Peach Pastel) -->
+<div class="bg-app-peach p-3.5 rounded-2xl flex flex-col items-center justify-center text-center shadow-xs">
+<span class="text-xl font-black text-app-dark leading-tight">12</span>
+<span class="text-[11px] font-bold text-slate-700 mt-1">Interviews</span>
+</div>
+<!-- Stat 3: Saved Jobs (Mint Pastel) -->
+<div class="bg-app-mint p-3.5 rounded-2xl flex flex-col items-center justify-center text-center shadow-xs">
+<span class="text-xl font-black text-app-dark leading-tight">8</span>
+<span class="text-[11px] font-bold text-slate-700 mt-1">Saved</span>
+</div>
+</section>
+<!-- END: StatsTrioCards -->
+<!-- BEGIN: ResumeAttachmentCard -->
+<section class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100/70" data-purpose="cv-resume-card">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Attached Document</span>
+<span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Updated</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 p-3 rounded-2xl">
+<div class="flex items-center space-x-3 min-w-0">
+<!-- PDF Icon Badge -->
+<div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600 shrink-0 font-black text-xs">
+              PDF
+            </div>
+<div class="min-w-0">
+<h3 class="text-xs font-bold text-app-dark truncate">Robert_Fox_Product_CV.pdf</h3>
+<p class="text-[10px] text-slate-400 font-medium">1.4 MB • Uploaded 2d ago</p>
+</div>
+</div>
+<!-- Download or Replace Action -->
+<button aria-label="Download CV" class="w-8 h-8 rounded-full bg-app-lime flex items-center justify-center text-app-dark shrink-0 active:scale-95 shadow-sm">
+<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</section>
+<!-- END: ResumeAttachmentCard -->
+<!-- BEGIN: ProfileMenuItems -->
+<section class="space-y-2.5" data-purpose="interactive-menu">
+<!-- Skills Pill Block -->
+<div class="bg-white rounded-3xl p-4 shadow-sm border border-slate-100/70">
+<div class="flex items-center justify-between mb-2.5">
+<h3 class="text-xs font-bold text-app-dark">Key Expertise</h3>
+<button class="text-[11px] font-bold text-indigo-600">Edit</button>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">Figma</span>
+<span class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">UI/UX Design</span>
+<span class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">Design System</span>
+<span class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">Prototyping</span>
+<span class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">User Research</span>
+</div>
+</div>
+<!-- Menu Item: Job Preferences -->
+<button class="w-full bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-sm active:bg-slate-50 transition-colors border border-slate-100/60 text-left">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-xl bg-app-mint flex items-center justify-center text-slate-800">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<p class="text-xs font-bold text-app-dark leading-tight">Job Preferences &amp; Alerts</p>
+<p class="text-[10px] text-slate-400 font-medium mt-0.5">Product Design • Full Time • $180k+</p>
+</div>
+</div>
+<svg class="w-4 h-4 text-slate-400 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Menu Item: Application History -->
+<button class="w-full bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-sm active:bg-slate-50 transition-colors border border-slate-100/60 text-left">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-xl bg-app-lavender-light flex items-center justify-center text-indigo-700">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<p class="text-xs font-bold text-app-dark leading-tight">Application Tracker</p>
+<p class="text-[10px] text-slate-400 font-medium mt-0.5">3 active interviews pending response</p>
+</div>
+</div>
+<svg class="w-4 h-4 text-slate-400 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Menu Item: Settings & Privacy -->
+<button class="w-full bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-sm active:bg-slate-50 transition-colors border border-slate-100/60 text-left">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-xl bg-app-peach-light flex items-center justify-center text-amber-700">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<p class="text-xs font-bold text-app-dark leading-tight">Account &amp; Notifications</p>
+<p class="text-[10px] text-slate-400 font-medium mt-0.5">Password, push alerts &amp; privacy</p>
+</div>
+</div>
+<svg class="w-4 h-4 text-slate-400 stroke-current" fill="none" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</section>
+<!-- END: ProfileMenuItems -->
+</main>
+<!-- BEGIN: FloatingBottomNavBar -->
+<div class="absolute bottom-5 inset-x-5 z-30 pointer-events-none">
+<nav class="bg-white rounded-full py-2 px-3 shadow-floating flex items-center justify-between pointer-events-auto border border-slate-100" data-purpose="floating-dock-nav">
+<!-- Tab 1: Home -->
+<a aria-label="Home Tab" class="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+</svg>
+</a>
+<!-- Tab 2: Saved / Bookmarks -->
+<a aria-label="Saved Tab" class="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<!-- Tab 3: Chat / Messages -->
+<a aria-label="Chat Tab" class="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors" href="#">
+<svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-.974-.974 5.952 5.952 0 011.057-2.036A8.04 8.04 0 013 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<!-- Tab 4: Profile (Active Indicator with neon lime pill) -->
+<a aria-label="Profile Tab" class="w-12 h-12 bg-app-lime rounded-full flex items-center justify-center text-app-dark shadow-lime-glow transition-transform active:scale-95" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+</a>
+</nav>
+</div>
+<!-- END: FloatingBottomNavBar -->
+<!-- iOS Bottom Home Bar Indicator -->
+<div class="h-5 w-full flex items-center justify-center shrink-0 pb-1 z-40 bg-transparent">
+<div class="w-32 h-1 bg-slate-400/60 rounded-full"></div>
+</div>
+</div>
+</body></html>
+
+<!-- Job Finder - Job Details Screen -->
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Job Details - Product Designer</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-bg': '#F5F5FA',
+            'app-card': '#FFFFFF',
+            'app-lavender': '#B9B4F8',
+            'app-lime': '#CEF33D',
+            'app-lime-dark': '#B5DA24',
+            'app-dark': '#15161A',
+            'app-muted': '#80828D',
+            'app-chip': '#F2F2F7',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 'sans-serif'],
+          },
+          borderRadius: {
+            '4xl': '2rem',
+            '5xl': '2.5rem',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Layout Styles -->
+<style data-purpose="layout">
+    body {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* Wave curve mask & shape for the lavender top banner */
+    .curved-banner {
+      border-bottom-left-radius: 46% 28px;
+      border-bottom-right-radius: 46% 28px;
+    }
+
+    /* Subtle map graphics styling */
+    .map-vector-road {
+      stroke: #FFFFFF;
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+    .map-vector-road-accent {
+      stroke: #FFE5A3;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+  </style>
+</head>
+<body class="bg-[#ECEBF0] min-h-screen flex items-center justify-center p-0 sm:p-6 font-sans antialiased text-app-dark">
+<!-- BEGIN: PhoneContainer -->
+<!-- Mimics an iPhone frame / modern mobile viewport -->
+<main class="w-full max-w-[400px] h-screen sm:h-[844px] bg-white sm:rounded-[44px] shadow-2xl overflow-hidden flex flex-col relative" data-purpose="mobile-viewport">
+<!-- BEGIN: TopBar -->
+<!-- Curved Header Background & Navigation Buttons -->
+<header class="relative bg-app-lavender pt-12 pb-16 px-6 curved-banner flex-shrink-0" data-purpose="top-navigation-header">
+<!-- Top Navigation Row -->
+<nav aria-label="Main Navigation" class="flex items-center justify-between relative z-10">
+<!-- Back Button -->
+<button aria-label="Go Back" class="w-10 h-10 rounded-full bg-app-dark text-white flex items-center justify-center shadow-md active:scale-95 transition-transform" type="button">
+<svg class="w-5 h-5 -ml-0.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Screen Title -->
+<h1 class="text-[17px] font-bold text-app-dark tracking-tight">Job Details</h1>
+<!-- Bookmark / Save Button -->
+<button aria-label="Save Job" class="w-10 h-10 rounded-full bg-app-dark text-white flex items-center justify-center shadow-md active:scale-95 transition-transform" type="button">
+<svg class="w-4 h-4 fill-white" viewbox="0 0 24 24">
+<path d="M5 4a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 20V4z"></path>
+</svg>
+</button>
+</nav>
+<!-- Central Circular Apple Badge overlapping the curved header -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 z-20" data-purpose="company-logo-badge">
+<div class="w-20 h-20 rounded-full bg-app-lime flex items-center justify-center shadow-lg border-[3.5px] border-white">
+<!-- Apple Logo (SVG) -->
+<svg class="w-9 h-9 fill-app-dark" viewbox="0 0 170 170">
+<path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.96-14.31-7.24-11.08-12.83-23.77-16.78-38.07-3.95-14.3-5.93-27.17-5.93-38.6 0-14.77 3.58-27.11 10.74-37.02 7.16-9.91 16.29-15.01 27.38-15.31 4.79 0 10.15 1.25 16.08 3.75 5.93 2.5 9.77 3.82 11.51 3.96 1.41-.14 5.37-1.48 11.89-4.03 6.52-2.55 11.94-3.75 16.25-3.61 12.35.63 22.39 5.25 30.12 13.86-10.79 6.52-16.08 15.66-15.86 27.42.22 9.13 3.79 16.89 10.71 23.27 6.92 6.38 15.22 10.12 24.9 11.22-2.28 6.96-5.01 14.13-8.19 21.51zM119.22 31.84c0-7.39 2.67-14.28 8.01-20.67 5.34-6.39 12-10.58 19.98-12.57.11 1.09.16 2.01.16 2.77 0 7.39-2.78 14.41-8.34 21.06-5.56 6.65-12.37 10.66-20.43 12.02-.33-.87-.49-1.74-.49-2.61z"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: ContentScrollArea -->
+<div class="flex-1 overflow-y-auto px-6 pt-12 pb-24 space-y-6" data-purpose="job-details-content">
+<!-- Job Title & Meta Chips -->
+<section class="text-center pt-2" data-purpose="job-heading">
+<h2 class="text-2xl font-bold text-app-dark tracking-tight leading-tight">Product Designer</h2>
+<p class="text-xs font-semibold text-gray-700 mt-1 tracking-normal">$200k-500k/year</p>
+<!-- Attribute Tags -->
+<div class="flex items-center justify-center gap-2.5 mt-4">
+<span class="px-4 py-1.5 rounded-full text-[11px] font-medium text-gray-700 bg-app-chip">Design</span>
+<span class="px-4 py-1.5 rounded-full text-[11px] font-medium text-gray-700 bg-app-chip">Full Time</span>
+<span class="px-4 py-1.5 rounded-full text-[11px] font-medium text-gray-700 bg-app-chip">Anywhere</span>
+</div>
+</section>
+<!-- Job Description -->
+<section data-purpose="job-description">
+<p class="text-[12.5px] leading-[1.65] text-app-muted font-normal text-left">
+          Product designer is responsible for the user experience of a product, usually taking direction on the business goals and objectives from product
+        </p>
+</section>
+<!-- BEGIN: MapLocationWidget -->
+<!-- Interactive Split Card: Map Graphic & Direction Trigger -->
+<section class="flex items-stretch gap-2.5 h-[84px]" data-purpose="location-map-card">
+<!-- Map Preview Box -->
+<div class="flex-1 bg-[#E8F3EE] rounded-2xl relative overflow-hidden border border-black/5 flex items-center justify-center">
+<!-- Stylized Map Background Vector -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 160 84">
+<rect fill="#EBF4EE" height="84" width="160"></rect>
+<path class="map-vector-road" d="M-10,30 Q40,40 70,10 T180,20"></path>
+<path class="map-vector-road" d="M60,-10 L85,95"></path>
+<path class="map-vector-road-accent" d="M-10,65 L170,45"></path>
+<rect fill="#DCEDE3" height="24" rx="4" width="30" x="15" y="8"></rect>
+<rect fill="#D3EADA" height="32" rx="5" width="48" x="95" y="42"></rect>
+<rect fill="#E0F0E6" height="20" rx="3" width="35" x="105" y="8"></rect>
+</svg>
+<!-- Map Pin Anchor Indicator -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-app-dark text-white flex items-center justify-center shadow-md border-2 border-white">
+<svg class="w-3 h-3 fill-current" viewbox="0 0 24 24">
+<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+</svg>
+</div>
+<!-- Dotted ping anchor lines -->
+<div class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1 opacity-80"></div>
+</div>
+</div>
+<!-- Get Direction Button -->
+<button aria-label="Get Map direction" class="w-[104px] bg-app-dark rounded-2xl flex flex-col items-center justify-center p-2 text-white active:scale-95 transition-transform group" type="button">
+<!-- Green Turn Arrow Icon -->
+<div class="w-7 h-7 rounded-lg bg-transparent flex items-center justify-center mb-1">
+<svg class="w-5 h-5 text-app-lime fill-current" viewbox="0 0 24 24">
+<path d="M19.5 9.5l-6-6a1 1 0 00-1.41 0l-6 6a1 1 0 001.41 1.41L11 7.41V16a3 3 0 003 3h2a1 1 0 100-2h-2a1 1 0 01-1-1V7.41l3.59 3.59a1 1 0 001.41-1.41z"></path>
+</svg>
+</div>
+<span class="text-[10px] leading-tight text-center font-medium text-gray-200">
+            Get<br/>Map direction
+          </span>
+</button>
+</section>
+<!-- END: MapLocationWidget -->
+<!-- BEGIN: RequirementsSection -->
+<section class="pt-1 pb-4" data-purpose="job-requirements">
+<h3 class="text-sm font-bold text-app-dark tracking-tight mb-2.5">Requirments</h3>
+<ul class="space-y-2">
+<!-- Requirement item 1 -->
+<li class="flex items-start gap-2.5 text-[11.5px] leading-relaxed text-app-muted">
+<span class="w-1.5 h-1.5 rounded-full bg-app-dark mt-1.5 flex-shrink-0"></span>
+<span>Minimum 2/5 Years Experience needed.</span>
+</li>
+<!-- Requirement item 2 -->
+<li class="flex items-start gap-2.5 text-[11.5px] leading-relaxed text-app-muted">
+<span class="w-1.5 h-1.5 rounded-full bg-app-dark mt-1.5 flex-shrink-0"></span>
+<span>Creative ideas with problem solving mindset.</span>
+</li>
+<!-- Faded trailing preview requirement item (as visible in layout) -->
+<li class="flex items-start gap-2.5 text-[11.5px] leading-relaxed text-gray-300 select-none opacity-40">
+<span class="w-1.5 h-1.5 rounded-full bg-gray-300 mt-1.5 flex-shrink-0"></span>
+<span>Minimum 2/5 Years Experience needed.</span>
+</li>
+</ul>
+</section>
+<!-- END: RequirementsSection -->
+</div>
+<!-- END: ContentScrollArea -->
+<!-- BEGIN: FloatingBottomCTA -->
+<!-- Two-tone Action Pill: "Apply Now" + Lime Chevron Slider -->
+<div class="absolute bottom-5 inset-x-0 px-6 z-30 pointer-events-none" data-purpose="floating-action-container">
+<div class="pointer-events-auto bg-app-lime p-1.5 rounded-full flex items-center shadow-lg shadow-app-lime/25 border border-black/5 max-w-[340px] mx-auto cursor-pointer active:scale-[0.98] transition-transform">
+<!-- Dark Apply Now Pill -->
+<button class="bg-app-dark text-white text-xs font-semibold px-6 py-3.5 rounded-full shadow-sm flex items-center justify-center flex-shrink-0" type="button">
+          Apply Now
+        </button>
+<!-- Right Chevron Track -->
+<div aria-hidden="true" class="flex-1 flex items-center justify-center gap-0.5 text-app-dark/70 font-black tracking-[-3px] text-base select-none pr-3">
+<span>&gt;</span>
+<span>&gt;</span>
+<span>&gt;</span>
+<span>&gt;</span>
+<span>&gt;</span>
+<span>&gt;</span>
+</div>
+</div>
+</div>
+<!-- END: FloatingBottomCTA -->
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-1 inset-x-0 flex justify-center pb-1 z-40 pointer-events-none">
+<div class="w-32 h-1 bg-black/20 rounded-full"></div>
+</div>
+</main>
+<!-- END: PhoneContainer -->
+</body></html>
+
+<!-- Job Finder - Home & Discovery Screen -->
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Job Finder - Mobile App</title>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: {
+              bg: '#F2F1F8',
+              surface: '#FFFFFF',
+              dark: '#18181B',
+              primaryLavender: '#BFB9FA',
+              lightLavender: '#ECE9FD',
+              lime: '#CEF839',
+              mint: '#D8F7D9',
+              peach: '#FDE7C9',
+              subtleGray: '#8E8E9A',
+              cardBg: '#FAFAFD',
+              cardBorder: '#EBE9F5'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          boxShadow: {
+            'card-soft': '0 8px 24px -4px rgba(78, 72, 114, 0.06), 0 2px 6px -1px rgba(78, 72, 114, 0.04)',
+            'nav-float': '0 12px 32px -4px rgba(30, 27, 56, 0.12), 0 4px 12px -2px rgba(30, 27, 56, 0.06)',
+            'lime-glow': '0 6px 18px -2px rgba(206, 248, 57, 0.45)',
+          },
+          borderRadius: {
+            '3xl': '26px',
+            '4xl': '32px',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="base-layout">
+    /* iOS friendly safe area and smooth scrollbar suppression */
+    body {
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style data-purpose="micro-interactions">
+    .tap-press:active {
+      transform: scale(0.96);
+      transition: transform 0.15s ease-out;
+    }
+    .tag-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-[#E4E3EC] text-[#18181B] antialiased min-h-screen flex justify-center items-center p-0 md:p-6 select-none font-sans">
+<!-- BEGIN: Mobile Container (iOS viewport standard) -->
+<div class="w-full max-w-[420px] min-h-screen md:min-h-[880px] md:max-h-[920px] bg-app-bg md:rounded-[44px] shadow-2xl relative flex flex-col justify-between overflow-hidden border border-white/60 md:border-black/5">
+<!-- iOS Dynamic Island / Notch Simulation (Desktop mode preview) -->
+<div class="hidden md:flex absolute top-3 inset-x-0 justify-center z-50 pointer-events-none">
+<div class="h-5 w-28 bg-black rounded-full"></div>
+</div>
+<!-- BEGIN: Scrollable App Viewport -->
+<main class="flex-1 overflow-y-auto no-scrollbar pt-6 pb-28 px-5">
+<!-- BEGIN: Top Navigation Header -->
+<header class="flex items-center justify-between mt-2 mb-6" data-purpose="app-header">
+<!-- Grid Menu Button -->
+<button aria-label="Menu" class="tap-press w-11 h-11 bg-app-dark rounded-2xl flex items-center justify-center text-white shadow-sm hover:opacity-90 transition" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<rect height="6" rx="2" width="6" x="4" y="4"></rect>
+<rect height="6" rx="2" width="6" x="14" y="4"></rect>
+<rect height="6" rx="2" width="6" x="4" y="14"></rect>
+<rect height="6" rx="2" width="6" x="14" y="14"></rect>
+</svg>
+</button>
+<!-- User Profile Pill -->
+<div class="tap-press flex items-center gap-2.5 bg-app-dark text-white pl-4 pr-1.5 py-1.5 rounded-full cursor-pointer hover:bg-black transition shadow-sm">
+<span class="text-xs font-semibold tracking-tight">Robert</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-purple-200 border border-white/20 flex items-center justify-center">
+<img alt="Robert Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXD_qQ4OCSw217EY8iw9JpEQN6nLzKfTrUam0rV8n-klMUVD0BZJoz7NH6Tl-12iqWLc6wnNnwE9v0-mrQHYR0jQyTeDTAUgCRtj30j9jRJLwp0fEeVvKwOADDbN8_7q5z0fZt6Ab2JNYTs6L203YV1da3k68BdLLh3gRzScSFeUAAkG6oWRdl9o4qK2JiZn_9JSdi9GkFhQSKWdxC7eYVGPclo2THSCo4UToCE3g"/>
+</div>
+</div>
+</header>
+<!-- END: Top Navigation Header -->
+<!-- BEGIN: Greeting Section -->
+<section class="mb-6" data-purpose="greeting">
+<h1 class="text-2xl font-bold tracking-tight text-app-dark leading-snug">
+          Wellcome Robert !!
+        </h1>
+<p class="text-app-subtleGray text-[13px] font-normal mt-1 flex items-center gap-1.5">
+<span>The bettar way to find your fancy job here</span>
+<span class="text-base">🙂</span>
+</p>
+</section>
+<!-- END: Greeting Section -->
+<!-- BEGIN: Search and Filter Bar -->
+<section class="mb-7 flex items-center gap-2.5" data-purpose="search-bar">
+<!-- Search Input -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-app-subtleGray">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="7"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+</div>
+<input class="w-full h-12 bg-white/90 border-0 rounded-full pl-11 pr-4 text-xs font-medium text-app-dark placeholder-app-subtleGray/70 focus:ring-2 focus:ring-app-primaryLavender shadow-sm tracking-tight" placeholder="Search location here..." type="text"/>
+</div>
+<!-- Filter Sliders Button -->
+<button aria-label="Filter" class="tap-press w-12 h-12 bg-app-lime text-app-dark rounded-2xl flex items-center justify-center shadow-lime-glow hover:brightness-105 transition" type="button">
+<svg class="w-5 h-5 stroke-current" fill="none" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="9" cy="7" fill="#18181B" r="2.5"></circle>
+<line x1="4" x2="20" y1="17" y2="17"></line>
+<circle cx="15" cy="17" fill="#18181B" r="2.5"></circle>
+</svg>
+</button>
+</section>
+<!-- END: Search and Filter Bar -->
+<!-- BEGIN: Popular Jobs Section -->
+<section class="mb-8" data-purpose="popular-jobs-carousel">
+<div class="flex items-center justify-between mb-3.5 px-0.5">
+<h2 class="text-base font-bold text-app-dark tracking-tight">Popular Jobs</h2>
+</div>
+<!-- Horizontal Snap Carousel -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar -mx-5 px-5 pb-2 pt-1 snap-x">
+<!-- Card 1: Apple Product Designer (Lavender Theme) -->
+<article class="tap-press snap-start min-w-[275px] max-w-[275px] bg-app-primaryLavender rounded-3xl p-4 flex flex-col justify-between shadow-card-soft cursor-pointer relative overflow-hidden transition-transform duration-200">
+<!-- Header: Logo, Title, Salary -->
+<div class="flex items-start gap-3 mb-4">
+<div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0">
+<!-- Apple SVG Logo -->
+<svg class="w-5 h-5 fill-black" viewbox="0 0 170 170">
+<path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.96-14.33-7.51-11.41-13.43-24.58-17.76-39.5-4.33-14.92-6.5-28.79-6.5-41.61 0-16.73 4.13-30.73 12.39-42 8.26-11.27 18.86-17.06 31.8-17.38 5.43 0 11.22 1.34 17.38 4.02 6.16 2.68 10.37 4.07 12.63 4.18 1.96 0 6.34-1.46 13.15-4.38 6.81-2.92 12.83-4.22 18.06-3.9 14.12.87 25.43 6.03 33.93 15.48-12.38 7.5-18.42 17.81-18.12 30.93.33 10.66 4.41 19.67 12.24 27.02 7.83 7.35 17.08 11.63 27.75 12.83-2.39 7.4-5.32 14.9-8.79 22.52zM119.22 31.84c0-7.72 2.76-15.02 8.28-21.9 5.53-6.88 12.44-11.23 20.74-13.06.33 1.2.5 2.37.5 3.51 0 7.6-2.9 14.88-8.71 21.84-5.8 6.96-12.89 11.19-21.26 12.69-.33-1.07-.49-2.09-.49-3.08z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-bold text-app-dark leading-tight truncate">Product Designer</h3>
+<p class="text-[11px] font-semibold text-app-dark/70 mt-0.5">$200k-500k/year</p>
+</div>
+<button class="tap-press text-app-dark/60 hover:text-app-dark p-1">
+<svg class="w-4 h-4 fill-none stroke-current stroke-[2]" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Tags -->
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="tag-badge text-app-dark">Design</span>
+<span class="tag-badge text-app-dark">Full Time</span>
+<span class="tag-badge text-app-dark">Anywhere</span>
+</div>
+</article>
+<!-- Card 2: GitHub Web Development (Peach / Warm Cream Theme) -->
+<article class="tap-press snap-start min-w-[275px] max-w-[275px] bg-app-peach rounded-3xl p-4 flex flex-col justify-between shadow-card-soft cursor-pointer relative overflow-hidden transition-transform duration-200">
+<!-- Header: Logo, Title, Salary -->
+<div class="flex items-start gap-3 mb-4">
+<div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0">
+<!-- GitHub SVG Logo -->
+<svg class="w-5 h-5 fill-black" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-bold text-app-dark leading-tight truncate">Web Development</h3>
+<p class="text-[11px] font-semibold text-app-dark/70 mt-0.5">$1500/month</p>
+</div>
+<button class="tap-press text-app-dark/60 hover:text-app-dark p-1">
+<svg class="w-4 h-4 fill-none stroke-current stroke-[2]" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Tags -->
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="tag-badge text-app-dark">Design</span>
+<span class="tag-badge text-app-dark">Full Time</span>
+<span class="tag-badge text-app-dark">Anywhere</span>
+</div>
+</article>
+</div>
+</section>
+<!-- END: Popular Jobs Section -->
+<!-- BEGIN: Recently Added Section -->
+<section data-purpose="recently-added-list">
+<div class="flex items-center justify-between mb-3.5 px-0.5">
+<h2 class="text-base font-bold text-app-dark tracking-tight">Recently Added</h2>
+<a class="text-xs font-medium text-app-subtleGray hover:text-app-dark transition" href="#">See All</a>
+</div>
+<div class="space-y-3.5">
+<!-- Item 1: Mint Banner - Web Development 15 Jobs -->
+<article class="tap-press bg-app-mint rounded-3xl p-4 flex items-center justify-between shadow-card-soft cursor-pointer hover:brightness-[0.99] transition">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+<!-- GitHub SVG -->
+<svg class="w-6 h-6 fill-black" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-sm font-bold text-app-dark leading-tight">Web Development</h3>
+<p class="text-[12px] font-medium text-app-dark/70 mt-0.5">15 Jobs</p>
+</div>
+</div>
+<div class="text-app-dark/40 pr-1">
+<svg class="w-5 h-5 stroke-current stroke-2 fill-none" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</article>
+<!-- Item 2: Detailed Card - Online Marketing with Spotify -->
+<article class="tap-press bg-white rounded-3xl p-4 shadow-card-soft border border-slate-100 flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 bg-app-mint rounded-2xl flex items-center justify-center">
+<!-- Spotify SVG -->
+<svg class="w-6 h-6 fill-[#1DB954]" viewbox="0 0 24 24">
+<path d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10 5.524 0 10-4.476 10-10 0-5.523-4.476-10-10-10zm4.587 14.425c-.18.295-.563.387-.857.207-2.35-1.436-5.308-1.76-8.793-.963-.335.077-.67-.133-.746-.469-.077-.334.132-.67.467-.746 3.809-.87 7.076-.496 9.722 1.115.294.18.386.563.207.856zm1.224-2.723c-.226.368-.71.482-1.078.256-2.69-1.653-6.79-2.133-9.97-1.167-.413.125-.85-.11-1.025-.522-.125-.413.11-.85.522-1.025 3.633-1.103 8.147-.568 11.295 1.38.368.226.482.71.256 1.078zm.106-2.835C14.692 8.94 9.38 8.765 6.297 9.7c-.495.15-1.02-.132-1.17-.627-.15-.495.132-1.02.627-1.17 3.542-1.075 9.404-.871 13.155 1.356.444.264.59.84.327 1.284-.264.444-.84.59-1.284.327z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-sm font-bold text-app-dark leading-tight">Online Marketing</h3>
+<p class="text-[11px] font-semibold text-app-subtleGray mt-0.5">$500/month</p>
+</div>
+</div>
+<button class="tap-press text-app-subtleGray hover:text-app-dark p-1">
+<svg class="w-4 h-4 fill-none stroke-current stroke-[2]" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Footer Tags & Apply Button -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Design</span>
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Full Time</span>
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Anywhere</span>
+</div>
+<button class="tap-press bg-app-lime text-app-dark font-semibold text-xs px-4 py-1.5 rounded-full hover:brightness-95 transition shadow-sm">
+                Apply
+              </button>
+</div>
+</article>
+<!-- Item 3: Detailed Card - Web Development with GitHub -->
+<article class="tap-press bg-white rounded-3xl p-4 shadow-card-soft border border-slate-100 flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 bg-purple-100 rounded-2xl flex items-center justify-center">
+<!-- GitHub SVG -->
+<svg class="w-6 h-6 fill-black" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-sm font-bold text-app-dark leading-tight">Web Development</h3>
+<p class="text-[11px] font-semibold text-app-subtleGray mt-0.5">$1500/month</p>
+</div>
+</div>
+<button class="tap-press text-app-subtleGray hover:text-app-dark p-1">
+<svg class="w-4 h-4 fill-none stroke-current stroke-[2]" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Footer Tags & Apply Button -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5">
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Design</span>
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Full Time</span>
+<span class="bg-gray-100/90 text-app-dark text-[11px] font-medium px-2.5 py-1 rounded-full">Anywhere</span>
+</div>
+<button class="tap-press bg-app-lime text-app-dark font-semibold text-xs px-4 py-1.5 rounded-full hover:brightness-95 transition shadow-sm">
+                Apply
+              </button>
+</div>
+</article>
+</div>
+</section>
+<!-- END: Recently Added Section -->
+</main>
+<!-- END: Scrollable App Viewport -->
+<!-- BEGIN: Floating Bottom Navigation Dock -->
+<nav class="absolute bottom-5 inset-x-5 z-40" data-purpose="bottom-navigation">
+<div class="bg-white/95 backdrop-blur-md h-16 rounded-full px-6 flex items-center justify-between shadow-nav-float border border-white/60">
+<!-- Active Tab: Home with neon pill indicator -->
+<button aria-label="Home" class="tap-press relative w-10 h-10 flex items-center justify-center" type="button">
+<div class="w-9 h-9 bg-app-lime rounded-full flex items-center justify-center shadow-lime-glow">
+<svg class="w-4 h-4 fill-app-dark" viewbox="0 0 24 24">
+<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+</svg>
+</div>
+</button>
+<!-- Tab 2: Saved / Bookmarks -->
+<button aria-label="Saved Jobs" class="tap-press w-10 h-10 flex items-center justify-center text-app-subtleGray hover:text-app-dark transition" type="button">
+<svg class="w-5 h-5 fill-none stroke-current stroke-[2.2]" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+<!-- Tab 3: Chat / Messages -->
+<button aria-label="Messages" class="tap-press w-10 h-10 flex items-center justify-center text-app-subtleGray hover:text-app-dark transition" type="button">
+<svg class="w-5 h-5 fill-none stroke-current stroke-[2.2]" viewbox="0 0 24 24">
+<path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Tab 4: Notifications -->
+<button aria-label="Notifications" class="tap-press w-10 h-10 flex items-center justify-center text-app-subtleGray hover:text-app-dark transition" type="button">
+<svg class="w-5 h-5 fill-none stroke-current stroke-[2.2]" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</nav>
+<!-- END: Floating Bottom Navigation Dock -->
+<!-- iOS Home Indicator bar -->
+<div class="absolute bottom-1.5 inset-x-0 flex justify-center pointer-events-none z-50">
+<div class="h-1 w-32 bg-black/20 rounded-full"></div>
+</div>
+</div>
+<!-- END: Mobile Container -->
+<!-- BEGIN: Interactive Feedback Controller -->
+<script data-purpose="ui-interactions">
+    // Add lightweight tactile active states and navigation toggling
+    document.querySelectorAll('nav button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('nav button').forEach(b => {
+          const innerPill = b.querySelector('.bg-app-lime');
+          if (innerPill) {
+            b.innerHTML = `
+              <svg class="w-5 h-5 fill-none stroke-current stroke-[2.2]" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>`;
+            b.className = 'tap-press w-10 h-10 flex items-center justify-center text-app-subtleGray hover:text-app-dark transition';
+          }
+        });
+
+        // Set clicked button to highlighted state
+        btn.className = 'tap-press relative w-10 h-10 flex items-center justify-center';
+        btn.innerHTML = `
+          <div class="w-9 h-9 bg-app-lime rounded-full flex items-center justify-center shadow-lime-glow animate-pulse">
+            <svg class="w-4 h-4 fill-app-dark" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+          </div>
+        `;
+      });
+    });
+  </script>
+<!-- END: Interactive Feedback Controller -->
+</body></html>
+
+<!-- Job Finder - Onboarding & Welcome Screen -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Job Finder - Onboarding</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              lavender: '#BDB8FB',
+              lime: '#CEF237',
+              dark: '#161616',
+              bgLight: '#F5F5FA',
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Segoe UI"', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    /* Custom curved SVG clip background */
+    .hero-wave-bg {
+      background: linear-gradient(180deg, #B9B4FB 0%, #CAC6FC 100%);
+      clip-path: ellipse(85% 65% at 50% 35%);
+    }
+
+    /* Subtle mobile frame shadow */
+    .mobile-frame {
+      box-shadow: 0 25px 60px -15px rgba(140, 135, 190, 0.35);
+    }
+    
+    /* Interactive swipe button glow effect */
+    .cta-shadow {
+      box-shadow: 0 12px 28px -6px rgba(180, 225, 45, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-[#EBE9F5] min-h-screen flex items-center justify-center p-0 sm:p-6 font-sans antialiased select-none text-slate-800">
+<!-- BEGIN: PhoneContainer -->
+<!-- Mimics an iOS viewport with authentic dimensions and curves -->
+<div class="mobile-frame relative w-full sm:max-w-[390px] h-[100dvh] sm:h-[844px] bg-white sm:rounded-[48px] overflow-hidden flex flex-col justify-between" data-purpose="mobile-screen-wrapper">
+<!-- BEGIN: TopBar -->
+<header class="relative z-20 pt-12 px-7 flex items-center justify-between" data-purpose="status-and-top-bar">
+<!-- Dots Indicator (Three subtle pagination dots) -->
+<div aria-label="Page indicator" class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400 opacity-60"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 opacity-40"></span>
+</div>
+<!-- Skip Button -->
+<button class="text-xs font-semibold text-slate-700 tracking-wide hover:opacity-75 transition-opacity" data-purpose="skip-button" type="button" style="font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Text&quot;, &quot;SF Pro Display&quot;, sans-serif; letter-spacing: -0.01em; font-weight: 600;">
+        Skip
+      </button>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: HeroVisual -->
+<section class="relative w-full flex-1 flex items-end justify-center overflow-hidden -mt-6" data-purpose="hero-illustration-area">
+<!-- Soft Lavender Curved Backdrop -->
+<div class="absolute inset-x-0 top-0 h-[82%] hero-wave-bg z-0"></div>
+<!-- Young Man Using Smartphone Cutout Photo -->
+<div class="relative z-10 w-full flex items-end justify-center pointer-events-none h-full"><img alt="3D professional man holding smartphone" class="h-full max-w-full object-contain object-bottom drop-shadow-xl" data-purpose="hero-person-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCU8hzCL5hIcl39sPV3LSlx0q_EDBq1oygF8_kwnXH2jPkue_OTm4_tmHEfCuDghp6xAvQYaBiF3CcuAxFgtRVKnkHTjUYvubXeSIA93WiKEFcsf6zn25RC5V0yPgCSRnR_LrHZwRBzH130jv_ZadOex9Sx14UaiKtopLiAoD5WAsxlYqOKsLOuaAV98YBBlShZ68AFeMkPy60zhHZVkIAvRPy752owBE8rPlWJpog7Uu368tu-X7_" style="width: 100%; max-width: 320px; height: 100%; object-fit: cover; object-position: center 8%; mask-image: linear-gradient(black 0%, black 72%, rgba(0, 0, 0, 0.6) 88%, transparent 100%);"></div>
+</section>
+<!-- END: HeroVisual -->
+<!-- BEGIN: ContentAndAction -->
+<footer class="relative z-20 px-8 pb-12 pt-2 flex flex-col items-center text-center bg-white" data-purpose="content-and-cta">
+<!-- Headline Typography matching original spelling verbatim -->
+<div class="mb-9">
+<h1 class="text-[31px] leading-[1.22] font-extrabold text-[#141416] tracking-[-0.02em]" data-purpose="main-headline" style="font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Display&quot;, &quot;SF Pro Text&quot;, &quot;Helvetica Neue&quot;, sans-serif; letter-spacing: -0.035em; line-height: 1.18; font-weight: 700;">
+          The bettar way to<br>
+          find your fancy<br>
+          job here
+        </h1>
+</div>
+<!-- Split Pill CTA Button -->
+<div class="w-full flex items-center justify-center">
+<div class="cta-shadow bg-[#CEF237] p-1 rounded-full flex items-center w-full max-w-[290px] h-[58px] cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200" data-purpose="cta-slider-pill">
+<!-- Black Pill: "Get Started" -->
+<div class="bg-[#141414] text-white font-bold text-[14px] px-6 h-full flex items-center justify-center rounded-full flex-shrink-0 tracking-tight shadow-sm" style="font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Text&quot;, &quot;SF Pro Display&quot;, sans-serif; letter-spacing: -0.02em; font-weight: 600;">
+            Get Started
+          </div>
+<!-- Green Section: Multiple Animated Forward Chevrons -->
+<div aria-hidden="true" class="flex-1 flex items-center justify-center space-x-[-1px] text-[#A6C81F] pr-3 select-none" data-purpose="swipe-arrow-indicators">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<svg class="w-4 h-4 text-[#98BA1C]" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<svg class="w-4 h-4 text-[#89A819]" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<svg class="w-4 h-4 text-[#7C9814]" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<svg class="w-4 h-4 text-[#6F8812]" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- iOS Home Indicator bar -->
+<div class="w-32 h-1 bg-neutral-300 rounded-full mt-7" data-purpose="ios-home-indicator"></div>
+</footer>
+<!-- END: ContentAndAction -->
+</div>
+<!-- END: PhoneContainer -->
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+
+<!-- Job Finder - Search Job Screen -->
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Search Job - Job Finder</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-bg': '#F5F6FA',
+            'lime-accent': '#D2F843',
+            'dark-pill': '#1E1E24',
+            'card-peach': '#FDE8BF',
+            'card-purple': '#D8D4FF',
+            'card-mint': '#D9F8DB',
+            'tag-bg': 'rgba(255, 255, 255, 0.65)'
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 8px 24px -4px rgba(0, 0, 0, 0.05)',
+            'nav': '0 -4px 20px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Stylesheet for UI Refinements -->
+<style data-purpose="custom-styling">
+    body {
+      -webkit-tap-highlight-color: transparent;
+      background-color: #E2E4EB;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+    }
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4">
+<!-- BEGIN: PhoneFrameWrapper -->
+<!-- Container emulating an iOS mobile device viewport -->
+<div class="w-full max-w-[412px] h-[100dvh] max-h-[890px] bg-app-bg text-[#1B1D28] flex flex-col justify-between relative overflow-hidden sm:rounded-[44px] sm:shadow-2xl sm:border-[8px] sm:border-slate-800" data-purpose="mobile-viewport">
+<!-- Top Content Area (Scrollable) -->
+<div class="flex-1 overflow-y-auto no-scrollbar px-5 pt-8 pb-24">
+<!-- BEGIN: Header -->
+<header class="flex items-center justify-between pt-2 pb-5" data-purpose="screen-header">
+<!-- Back Navigation Button -->
+<button aria-label="Go Back" class="w-11 h-11 rounded-full bg-[#181A20] text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm" type="button">
+<svg class="w-5 h-5 -ml-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7"></path>
+</svg>
+</button>
+<!-- Header Title -->
+<h1 class="text-xl font-bold tracking-tight text-[#16171D] mr-8">Search Job</h1>
+<!-- Balance Spacer -->
+<div class="w-3"></div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: SearchBarSection -->
+<section class="mt-2" data-purpose="search-bar">
+<div class="flex items-center gap-2.5">
+<!-- Search Input Box -->
+<div class="flex-1 h-14 bg-white rounded-full flex items-center px-4 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100/70">
+<!-- Search Icon -->
+<svg class="w-5 h-5 text-gray-400 shrink-0 mr-2.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<!-- Search Text -->
+<input class="w-full bg-transparent border-0 text-[#191A23] font-semibold text-[15px] focus:ring-0 p-0 placeholder-gray-400" placeholder="Search job title, skill..." type="text" value="UI/UX"/>
+</div>
+<!-- Filter / Settings Button (Vibrant Lime) -->
+<button aria-label="Filter Options" class="w-14 h-14 rounded-2xl bg-lime-accent flex items-center justify-center text-black shrink-0 transition-transform active:scale-95 shadow-sm" type="button">
+<svg class="w-6 h-6" fill="none" stroke="#16171D" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="8" y2="8"></line>
+<circle cx="8" cy="8" fill="#16171D" r="2.2"></circle>
+<line x1="4" x2="20" y1="16" y2="16"></line>
+<circle cx="16" cy="16" fill="#16171D" r="2.2"></circle>
+</svg>
+</button>
+</div>
+</section>
+<!-- END: SearchBarSection -->
+<!-- BEGIN: FilterPills -->
+<!-- Category Tabs beneath search bar -->
+<div class="flex items-center gap-2.5 mt-5" data-purpose="category-pills">
+<!-- Active Pill: Jobs -->
+<button class="px-7 py-2.5 bg-lime-accent text-[#14151B] font-bold text-sm rounded-full shadow-sm" type="button">
+          Jobs
+        </button>
+<!-- Inactive Pill: Companies -->
+<button class="px-6 py-2.5 bg-[#E8E9EF] text-gray-700 font-semibold text-sm rounded-full transition-colors active:bg-gray-300" type="button">
+          Companies
+        </button>
+<!-- Inactive Pill: Salaries -->
+<button class="px-6 py-2.5 bg-[#E8E9EF] text-gray-700 font-semibold text-sm rounded-full transition-colors active:bg-gray-300" type="button">
+          Salaries
+        </button>
+</div>
+<!-- END: FilterPills -->
+<!-- BEGIN: RecentSearchesSection -->
+<section class="mt-6" data-purpose="recent-searches-header">
+<!-- Section Header with Right Arrow -->
+<div class="flex items-center justify-between py-1 cursor-pointer">
+<span class="text-base font-bold text-[#14151B]">Recent searches</span>
+<svg class="w-4 h-4 text-gray-500 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Filter Subtitle Result Text -->
+<p class="text-xs text-gray-500 font-medium mt-3">
+          Search results showing for <span class="text-gray-900 font-bold">"Jobs"</span>
+</p>
+</section>
+<!-- END: RecentSearchesSection -->
+<!-- BEGIN: JobCardsList -->
+<!-- Job Search Results Feed -->
+<div class="mt-4 flex flex-col gap-3.5" data-purpose="job-cards-container">
+<!-- Job Card 1: Web Development (White / Clean Container) -->
+<article class="bg-white rounded-3xl p-4 shadow-[0_4px_16px_rgba(0,0,0,0.03)] border border-slate-100/80" data-purpose="job-card-1">
+<!-- Top Row: Icon, Titles, Bookmark -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Company Avatar (Github) -->
+<div class="w-12 h-12 rounded-full bg-[#181A20] text-white flex items-center justify-center shrink-0">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<!-- Job Info -->
+<div>
+<h2 class="text-sm font-bold text-[#14151B]">Web Development</h2>
+<p class="text-xs text-gray-500 font-medium mt-0.5">$1500/month</p>
+</div>
+</div>
+<!-- Bookmark Button -->
+<button aria-label="Save Job" class="text-gray-400 hover:text-black transition-colors p-1" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Bottom Row: Pill Tags & Apply -->
+<div class="flex items-center justify-between mt-3.5 pt-1">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-[#F2F3F7] text-gray-600 rounded-full">Design</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-[#F2F3F7] text-gray-600 rounded-full">Full Time</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-[#F2F3F7] text-gray-600 rounded-full">Anywhere</span>
+</div>
+<!-- Apply Button -->
+<button class="px-3.5 py-1 text-[11px] font-bold bg-lime-accent text-[#14151B] rounded-full active:scale-95 transition-transform" type="button">
+              Apply
+            </button>
+</div>
+</article>
+<!-- Job Card 2: Product Designer (Soft Peach Container) -->
+<article class="bg-card-peach rounded-3xl p-4 shadow-sm border border-amber-200/40" data-purpose="job-card-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Company Avatar (Apple) -->
+<div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shrink-0 shadow-xs">
+<svg class="w-6 h-6 fill-current mb-0.5" viewbox="0 0 170 170">
+<path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.69-7.85-12-14.42-6.19-9.35-11-19.8-14.43-31.35-3.44-11.55-5.16-22.37-5.16-32.46 0-14.42 3.8-26.4 11.4-35.94 7.6-9.54 17.1-14.42 28.5-14.64 4.36 0 9.29 1.14 14.79 3.42 5.5 2.28 9.24 3.48 11.22 3.59 1.58-.11 5.48-1.37 11.7-3.79 6.22-2.42 11.39-3.48 15.51-3.19 12.39.77 22.25 5.57 29.58 14.42-10.87 6.64-16.19 15.79-15.96 27.46.22 9.15 3.73 16.92 10.53 23.32 6.8 6.4 14.9 10.02 24.3 10.87-2.18 6.75-4.8 13.06-7.88 18.94zM119.22 32.74c0-7.19 2.65-13.93 7.95-20.22 5.3-6.29 11.83-10.46 19.59-12.52.88 3.59.98 7.07.32 10.45-.66 3.38-2.03 6.78-4.12 10.2-2.3 3.63-5.2 6.72-8.71 9.27-3.51 2.55-7.1 4.19-10.77 4.92-.66-4.05-1.07-7.23-1.07-9.55z"></path>
+</svg>
+</div>
+<!-- Job Info -->
+<div>
+<h2 class="text-sm font-bold text-[#14151B]">Product Designer</h2>
+<p class="text-xs text-gray-700 font-medium mt-0.5">$200k-500k/year</p>
+</div>
+</div>
+<!-- Saved / Solid Bookmark Icon -->
+<button aria-label="Saved Job" class="text-[#14151B] p-1" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Bottom Row: Tags & Apply -->
+<div class="flex items-center justify-between mt-3.5 pt-1">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Design</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Full Time</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Anywhere</span>
+</div>
+<!-- Apply Button -->
+<button class="px-3.5 py-1 text-[11px] font-bold bg-lime-accent text-[#14151B] rounded-full active:scale-95 transition-transform shadow-xs" type="button">
+              Apply
+            </button>
+</div>
+</article>
+<!-- Job Card 3: Online Marketing (Soft Mint Container) -->
+<article class="bg-card-mint rounded-3xl p-4 shadow-sm border border-emerald-100/50" data-purpose="job-card-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Company Avatar (Spotify) -->
+<div class="w-12 h-12 rounded-full bg-[#181A20] text-[#1ED760] flex items-center justify-center shrink-0">
+<svg class="w-7 h-7 fill-current" viewbox="0 0 24 24">
+<path d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10s10-4.476 10-10c0-5.523-4.477-10-10-10zm4.586 14.424c-.18.295-.563.387-.857.208-2.35-1.435-5.308-1.76-8.793-.963-.335.077-.67-.133-.746-.468-.077-.334.132-.67.467-.746 3.809-.87 7.076-.5 9.721 1.112.294.18.387.562.208.857zm1.224-2.72c-.226.368-.711.484-1.08.258-2.69-1.654-6.79-2.133-9.972-1.168-.413.125-.851-.109-.976-.522-.125-.413.109-.851.523-.976 3.633-1.103 8.147-.568 11.248 1.328.368.226.483.711.257 1.08zm.105-2.834C14.692 8.95 9.375 8.775 6.297 9.71c-.494.15-1.018-.129-1.168-.623-.15-.495.129-1.019.624-1.169 3.532-1.072 9.404-.866 13.123 1.343.444.263.59.84.327 1.284-.264.444-.84.59-1.284.327z"></path>
+</svg>
+</div>
+<!-- Job Info -->
+<div>
+<h2 class="text-sm font-bold text-[#14151B]">Online Marketing</h2>
+<p class="text-xs text-gray-700 font-medium mt-0.5">$500/month</p>
+</div>
+</div>
+<!-- Saved / Solid Bookmark Icon -->
+<button aria-label="Saved Job" class="text-[#14151B] p-1" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+</svg>
+</button>
+</div>
+<!-- Bottom Row: Tags & Apply -->
+<div class="flex items-center justify-between mt-3.5 pt-1">
+<div class="flex items-center gap-1.5">
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Design</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Full Time</span>
+<span class="px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-gray-700 rounded-full">Anywhere</span>
+</div>
+<!-- Apply Button -->
+<button class="px-3.5 py-1 text-[11px] font-bold bg-lime-accent text-[#14151B] rounded-full active:scale-95 transition-transform shadow-xs" type="button">
+              Apply
+            </button>
+</div>
+</article>
+</div>
+<!-- END: JobCardsList -->
+</div>
+<!-- BEGIN: FloatingBottomNavigation -->
+<!-- Floating Bottom Navigation Bar matching the UI kit -->
+<nav class="absolute bottom-5 inset-x-5 z-20" data-purpose="bottom-navbar">
+<div class="bg-white/90 backdrop-blur-xl rounded-full py-2.5 px-6 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-white/60 flex items-center justify-between">
+<!-- Home Button -->
+<button aria-label="Home" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-black transition-colors" type="button">
+<svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Saved / Portfolio (Active Tab with Lime Accent Pill) -->
+<button aria-label="Saved Jobs" class="w-10 h-10 rounded-full bg-lime-accent flex items-center justify-center text-black shadow-xs" type="button">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"></path>
+</svg>
+</button>
+<!-- Messages / Chat Button -->
+<button aria-label="Messages" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-black transition-colors" type="button">
+<svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Notifications / Profile Button -->
+<button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-black transition-colors" type="button">
+<svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</nav>
+<!-- END: FloatingBottomNavigation -->
+</div>
+<!-- END: PhoneFrameWrapper -->
+</body></html>

@@ -1,0 +1,6 @@
+{
+  "name": "Job Finder",
+  "description": "Tactile 4-screen mobile job discovery application featuring job search, bookmarking, location map routing, requirements, application tracker, and AI cover letter generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

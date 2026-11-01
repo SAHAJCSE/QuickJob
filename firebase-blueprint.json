@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Candidate user profile record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "User unique auth identifier" },
+        "email": { "type": "string", "description": "Candidate email address" },
+        "displayName": { "type": "string", "description": "Full name of candidate" },
+        "photoURL": { "type": "string", "description": "Avatar image URL" },
+        "title": { "type": "string", "description": "Professional title" },
+        "location": { "type": "string", "description": "Location address" },
+        "skills": { "type": "array", "description": "List of key skills" },
+        "createdAt": { "type": "string", "description": "Creation timestamp ISO" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp ISO" }
+      },
+      "required": ["uid", "email"]
+    },
+    "JobApplication": {
+      "title": "JobApplication",
+      "description": "Submitted job application",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Application record ID" },
+        "userId": { "type": "string", "description": "User UID who submitted" },
+        "jobId": { "type": "string", "description": "Job ID" },
+        "jobTitle": { "type": "string", "description": "Job title" },
+        "company": { "type": "string", "description": "Company name" },
+        "salary": { "type": "string", "description": "Salary range" },
+        "appliedDate": { "type": "string", "description": "Date string" },
+        "status": { "type": "string", "description": "Application status" },
+        "coverLetter": { "type": "string", "description": "Generated or written cover letter" },
+        "createdAt": { "type": "string", "description": "Creation timestamp ISO" }
+      },
+      "required": ["id", "userId", "jobId", "jobTitle", "company"]
+    },
+    "SavedJob": {
+      "title": "SavedJob",
+      "description": "User bookmarked job listing",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string", "description": "Job ID" },
+        "userId": { "type": "string", "description": "User UID" },
+        "savedAt": { "type": "string", "description": "Timestamp when saved" }
+      },
+      "required": ["jobId", "userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile collection"
+    },
+    "/users/{userId}/applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/JobApplication" },
+      "description": "User job applications"
+    },
+    "/users/{userId}/savedJobs/{savedJobId}": {
+      "schema": { "$ref": "#/entities/SavedJob" },
+      "description": "User saved/bookmarked jobs"
+    }
+  }
+}
