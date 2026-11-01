@@ -61,6 +61,121 @@ Guidelines:
   }
 });
 
+// Audio Transcription Endpoint using gemini-3.5-transcribe
+app.post('/api/transcribe', async (req, res) => {
+  try {
+    const { base64Audio, mimeType = 'audio/webm' } = req.body;
+    if (!base64Audio) {
+      return res.status(400).json({ success: false, error: 'No audio provided' });
+    }
+
+    const audioPart = {
+      inlineData: {
+        mimeType,
+        data: base64Audio,
+      },
+    };
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.5-transcribe',
+      contents: { parts: [audioPart, { text: 'Transcribe this spoken user voice command accurately into text.' }] },
+    });
+
+    const transcript = response.text || '';
+    res.json({ success: true, transcript });
+  } catch (err: any) {
+    console.error('Error transcribing audio:', err);
+    res.status(500).json({ success: false, error: err.message || 'Audio transcription failed' });
+  }
+});
+
+// Voice Command Parser Endpoint using gemini-3.8-flash
+app.post('/api/voice-command', async (req, res) => {
+  try {
+    const { transcript } = req.body;
+    if (!transcript) {
+      return res.status(400).json({ success: false, error: 'No transcript provided' });
+    }
+
+    const systemInstruction = `You are a voice assistant for a mobile Job Finder app.
+Convert the user's spoken voice command into a structured JSON action object.
+
+Available actions:
+1. SEARCH_JOBS: User wants to search or find jobs (e.g., "search for product manager", "find designer jobs"). Extract "query" string.
+2. FILTER_SALARY: User wants to filter by salary expectation (e.g., "filter salary to 150k", "minimum salary 200 thousand"). Extract "salaryMin" as a number in thousands (e.g. 150).
+3. GO_TO_TAB: User wants to navigate to a tab (e.g., "go to saved jobs", "open bookmarks", "show tracker", "go home", "open profile", "search jobs"). Extract "tab" as one of: "home", "search", "bookmarks", "tracker", "profile".
+4. APPLY_JOB: User wants to apply to a job (e.g., "apply now", "apply for this job").
+5. GENERATE_COVER_LETTER: User wants to create an AI cover letter (e.g., "generate cover letter", "write cover letter").
+6. UNKNOWN: Any other query.
+
+Output ONLY valid JSON matching this structure:
+{
+  "action": "SEARCH_JOBS" | "FILTER_SALARY" | "GO_TO_TAB" | "APPLY_JOB" | "GENERATE_COVER_LETTER" | "UNKNOWN",
+  "query"?: string,
+  "salaryMin"?: number,
+  "tab"?: "home" | "search" | "bookmarks" | "tracker" | "profile",
+  "spokenResponse": string
+}`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.8-flash',
+      contents: `Spoken command: "${transcript}"`,
+      config: {
+        systemInstruction,
+        responseMimeType: 'application/json',
+      },
+    });
+
+    let result = { action: 'UNKNOWN', spokenResponse: `I heard "${transcript}". How can I help with your job search?` };
+    try {
+      if (response.text) {
+        result = JSON.parse(response.text.trim());
+      }
+    } catch {
+      // fallback
+    }
+
+    res.json({ success: true, result });
+  } catch (err: any) {
+    console.error('Error parsing voice command:', err);
+    res.status(500).json({ success: false, error: err.message || 'Voice command parsing failed' });
+  }
+});
+
+// Text-to-Speech Endpoint using gemini-3.8-flash-lite-tts
+app.post('/api/tts', async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text) {
+      return res.status(400).json({ success: false, error: 'No text provided' });
+    }
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.8-flash-lite-tts',
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text }],
+        },
+      ],
+      config: {
+        responseModalities: ['AUDIO'],
+        speechConfig: {
+          voiceConfig: {
+            prebuiltVoiceConfig: { voiceName: 'Kore' },
+          },
+        },
+      },
+    });
+
+    const base64Audio = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data || null;
+    res.json({ success: true, base64Audio });
+  } catch (err: any) {
+    console.error('Error generating TTS:', err);
+    res.status(500).json({ success: false, error: err.message || 'TTS generation failed' });
+  }
+});
+
 // Setup Vite middleware for dev or static serving for prod
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {

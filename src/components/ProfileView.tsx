@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UserProfile, JobApplication } from '../types';
+import { soundEngine } from '../utils/sound';
 
 interface ProfileViewProps {
   userProfile: UserProfile;
@@ -335,6 +336,39 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <path d="M8.25 4.5l7.5 7.5-7.5 7.5" strokeLinecap="round" strokeLinejoin="round"></path>
           </svg>
         </button>
+
+        {/* Menu Item: Sound Effects Toggle */}
+        <div className="w-full bg-white rounded-2xl p-3.5 flex items-center justify-between shadow-xs border border-slate-100/60 text-left">
+          <div className="flex items-center space-x-3">
+            <div className="w-9 h-9 rounded-xl bg-[#FDE7C9] flex items-center justify-center text-slate-800">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-[#181A20] leading-tight">Click & Audio Sound FX</p>
+              <p className="text-[10px] text-slate-400 font-medium mt-0.5">Synthesized UI audio feedback</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              const current = soundEngine.getIsMuted();
+              soundEngine.setMuted(!current);
+              if (current) soundEngine.playClick();
+              triggerToast(!current ? 'Audio muted' : 'Audio unmuted');
+            }}
+            className={`w-12 h-6 rounded-full transition-colors relative ${
+              !soundEngine.getIsMuted() ? 'bg-[#CEF839]' : 'bg-slate-300'
+            }`}
+          >
+            <span
+              className={`w-5 h-5 rounded-full bg-slate-900 absolute top-0.5 transition-transform ${
+                !soundEngine.getIsMuted() ? 'translate-x-6' : 'translate-x-0.5'
+              }`}
+            />
+          </button>
+        </div>
 
         {/* Menu Item: Account & Sign In (Firebase Auth) */}
         {onOpenAuth && (

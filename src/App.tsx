@@ -22,6 +22,8 @@ import { ApplicationTrackerView } from './components/ApplicationTrackerView';
 import { FloatingBottomNav } from './components/FloatingBottomNav';
 import { AICoverLetterModal } from './components/AICoverLetterModal';
 import { AuthView } from './components/AuthView';
+import { VoiceAssistantModal } from './components/VoiceAssistantModal';
+import { soundEngine } from './utils/sound';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>('onboarding');
@@ -33,6 +35,7 @@ export default function App() {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [applyingJob, setApplyingJob] = useState<Job | null>(null);
   const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
+  const [isVoiceAssistantOpen, setIsVoiceAssistantOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>('');
   const [isMobileFrameMode, setIsMobileFrameMode] = useState<boolean>(true);
 
@@ -68,6 +71,11 @@ export default function App() {
     setSavedJobIds(updated);
     const job = jobs.find((j) => j.id === jobId);
     const isNowSaved = updated.includes(jobId);
+    if (isNowSaved) {
+      soundEngine.playSuccess();
+    } else {
+      soundEngine.playClick();
+    }
     triggerToast(
       isNowSaved
         ? `Saved "${job?.title || 'Job'}" to bookmarks`
@@ -76,18 +84,21 @@ export default function App() {
   };
 
   const handleSelectJob = (job: Job) => {
+    soundEngine.playClick();
     setSelectedJob(job);
     setActiveScreen('details');
   };
 
   const handleOpenApplyModal = (job: Job, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    soundEngine.playClick();
     setApplyingJob(job);
   };
 
   const handleSubmitApplication = (coverLetter: string) => {
     if (!applyingJob) return;
 
+    soundEngine.playSuccess();
     const newApp = addJobApplication({
       jobId: applyingJob.id,
       jobTitle: applyingJob.title,
@@ -102,7 +113,42 @@ export default function App() {
     triggerToast(`Application submitted for ${applyingJob.title} at ${applyingJob.company}!`);
   };
 
+  const handleExecuteVoiceAction = (result: {
+    action: string;
+    query?: string;
+    salaryMin?: number;
+    tab?: NavTab | 'search' | 'bookmarks';
+  }) => {
+    soundEngine.playSuccess();
+
+    if (result.action === 'GO_TO_TAB' && result.tab) {
+      if (result.tab === 'search') {
+        setActiveScreen('search');
+      } else if (result.tab === 'bookmarks') {
+        handleTabChange('saved');
+      } else if (
+        result.tab === 'home' ||
+        result.tab === 'saved' ||
+        result.tab === 'tracker' ||
+        result.tab === 'profile'
+      ) {
+        handleTabChange(result.tab);
+      }
+    } else if (result.action === 'SEARCH_JOBS') {
+      setActiveScreen('search');
+    } else if (result.action === 'FILTER_SALARY') {
+      setActiveScreen('search');
+    } else if (result.action === 'APPLY_JOB') {
+      const jobToApply = selectedJob || jobs[0];
+      handleOpenApplyModal(jobToApply);
+    } else if (result.action === 'GENERATE_COVER_LETTER') {
+      const jobToApply = selectedJob || jobs[0];
+      handleOpenApplyModal(jobToApply);
+    }
+  };
+
   const handleTabChange = (tab: NavTab) => {
+    soundEngine.playTap();
     setActiveTab(tab);
     if (tab === 'home') setActiveScreen('home');
     else if (tab === 'saved') setActiveScreen('saved');
@@ -299,6 +345,7 @@ export default function App() {
             onTabChange={handleTabChange}
             savedCount={savedJobIds.length}
             appliedCount={applications.length}
+            onOpenVoiceAssistant={() => setIsVoiceAssistantOpen(true)}
           />
         )}
 
@@ -317,6 +364,13 @@ export default function App() {
           onSubmitApplication={handleSubmitApplication}
         />
       )}
+
+      {/* AI Voice Assistant Modal */}
+      <VoiceAssistantModal
+        isOpen={isVoiceAssistantOpen}
+        onClose={() => setIsVoiceAssistantOpen(false)}
+        onExecuteAction={handleExecuteVoiceAction}
+      />
     </div>
   );
 }

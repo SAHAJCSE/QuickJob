@@ -1,4 +1,5 @@
 import React from 'react';
+import { soundEngine } from '../utils/sound';
 
 interface OnboardingViewProps {
   onStart: () => void;
@@ -6,6 +7,10 @@ interface OnboardingViewProps {
 }
 
 export const OnboardingView: React.FC<OnboardingViewProps> = ({ onStart, onOpenAuth }) => {
+  const handleStart = () => {
+    soundEngine.playSuccess();
+    onStart();
+  };
   return (
     <div className="relative w-full h-full bg-white flex flex-col justify-between overflow-hidden">
       {/* Top Bar */}
@@ -16,7 +21,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({ onStart, onOpenA
           <span className="w-1.5 h-1.5 rounded-full bg-slate-300 opacity-40"></span>
         </div>
         <button
-          onClick={onStart}
+          onClick={handleStart}
           className="text-xs font-semibold text-slate-700 tracking-wide hover:opacity-75 transition-opacity"
           type="button"
         >
@@ -73,7 +78,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({ onStart, onOpenA
         <div className="w-full flex items-center justify-center">
           <button
             type="button"
-            onClick={onStart}
+            onClick={handleStart}
             className="bg-[#CEF237] p-1 rounded-full flex items-center w-full max-w-[290px] h-[58px] cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200 shadow-[0_12px_28px_-6px_rgba(180,225,45,0.45)] text-left"
           >
             {/* Black Pill: Get Started */}
