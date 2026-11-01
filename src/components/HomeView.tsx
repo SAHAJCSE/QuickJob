@@ -142,23 +142,23 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <article
                 key={job.id}
                 onClick={() => onSelectJob(job)}
-                className={`snap-start min-w-[275px] max-w-[275px] ${cardBgClass} rounded-3xl p-4 flex flex-col justify-between shadow-sm cursor-pointer relative overflow-hidden transition-transform duration-200 active:scale-[0.98]`}
+                className={`snap-start min-w-[290px] max-w-[290px] ${cardBgClass} rounded-3xl p-5 flex flex-col justify-between shadow-sm cursor-pointer relative overflow-hidden transition-transform duration-200 active:scale-[0.98] border border-black/5`}
               >
                 {/* Header: Logo, Title, Salary, Bookmark */}
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-start gap-3.5 mb-4">
                   <CompanyLogo type={job.logoType} />
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-bold text-[#18181B] leading-tight truncate">{job.title}</h3>
-                    <p className="text-[11px] font-semibold text-[#18181B]/70 mt-0.5">{job.salary}</p>
+                    <h3 className="text-base font-extrabold text-[#18181B] leading-tight truncate">{job.title}</h3>
+                    <p className="text-xs font-bold text-[#18181B]/80 mt-0.5">{job.salary}</p>
                   </div>
                   <button
                     type="button"
                     aria-label="Bookmark"
                     onClick={(e) => onToggleSave(job.id, e)}
-                    className="text-[#18181B]/60 hover:text-[#18181B] p-1 transition-colors"
+                    className="text-[#18181B]/60 hover:text-[#18181B] p-1.5 transition-colors"
                   >
                     <svg
-                      className={`w-4 h-4 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2]'}`}
+                      className={`w-5 h-5 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2.2]'}`}
                       viewBox="0 0 24 24"
                     >
                       <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
@@ -171,7 +171,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   {job.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 rounded-full text-[11px] font-medium text-[#18181B] bg-white/70 backdrop-blur-xs"
+                      className="px-3 py-1 rounded-full text-xs font-bold text-[#18181B] bg-white/80 backdrop-blur-xs shadow-2xs"
                     >
                       {tag}
                     </span>
@@ -186,20 +186,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* RECOMMENDED FOR YOU SECTION */}
       {recommendedJobs.length > 0 && (
         <section className="mb-7">
-          <div className="flex items-center justify-between mb-3 px-0.5">
+          <div className="flex items-center justify-between mb-3.5 px-0.5">
             <div>
               <h2 className="text-base font-bold text-[#18181B] tracking-tight">Recommended for You</h2>
-              <p className="text-[11px] text-[#8E8E9A] font-medium">Matched to skills: {userProfile.skills.slice(0, 3).join(', ')}</p>
+              <p className="text-xs text-[#8E8E9A] font-semibold mt-0.5">Matched to skills: {userProfile.skills.slice(0, 3).join(', ')}</p>
             </div>
             <button
               onClick={onOpenProfile}
-              className="text-xs font-semibold text-indigo-600 hover:underline"
+              className="text-xs font-bold text-indigo-600 hover:underline"
             >
               Edit Skills
             </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {recommendedJobs.slice(0, 3).map((job) => {
               const isSaved = savedJobIds.includes(job.id);
               const isApplied = appliedJobIds.includes(job.id);
@@ -208,18 +208,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <article
                   key={`rec-${job.id}`}
                   onClick={() => onSelectJob(job)}
-                  className="bg-white rounded-3xl p-4 shadow-xs border border-indigo-100 flex flex-col gap-3 cursor-pointer active:scale-[0.99] transition relative overflow-hidden"
+                  className="bg-white rounded-3xl p-5 shadow-sm border border-indigo-100 flex flex-col gap-4 cursor-pointer active:scale-[0.99] transition relative overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 bg-[#ECE9FD] text-indigo-800 text-[9px] font-extrabold px-3 py-0.5 rounded-bl-xl border-l border-b border-indigo-200">
+                  <div className="absolute top-0 right-0 bg-[#ECE9FD] text-indigo-900 text-[10px] font-extrabold px-3 py-1 rounded-bl-xl border-l border-b border-indigo-200">
                     98% Match
                   </div>
 
                   <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3.5">
                       <CompanyLogo type={job.logoType} />
                       <div>
-                        <h3 className="text-sm font-bold text-[#18181B] leading-tight">{job.title}</h3>
-                        <p className="text-[11px] font-semibold text-[#8E8E9A] mt-0.5">{job.company} • {job.salary}</p>
+                        <h3 className="text-base font-extrabold text-[#18181B] leading-tight">{job.title}</h3>
+                        <p className="text-xs font-bold text-[#8E8E9A] mt-0.5">{job.company} • {job.salary}</p>
                       </div>
                     </div>
 
@@ -227,10 +227,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       type="button"
                       aria-label="Save Job"
                       onClick={(e) => onToggleSave(job.id, e)}
-                      className="text-[#8E8E9A] hover:text-[#18181B] p-1 transition-colors mr-10"
+                      className="text-[#8E8E9A] hover:text-[#18181B] p-1.5 transition-colors mr-[70px]"
                     >
                       <svg
-                        className={`w-4 h-4 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2]'}`}
+                        className={`w-5 h-5 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2.2]'}`}
                         viewBox="0 0 24 24"
                       >
                         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
@@ -239,11 +239,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   </div>
 
                   <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       {job.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="bg-slate-100 text-[#18181B] text-[11px] font-medium px-2.5 py-0.5 rounded-full"
+                          className="bg-slate-100 text-[#18181B] text-xs font-bold px-3 py-1 rounded-full"
                         >
                           {tag}
                         </span>
@@ -253,7 +253,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     <button
                       type="button"
                       onClick={(e) => onApplyJob(job, e)}
-                      className={`font-semibold text-xs px-4 py-1.5 rounded-full transition shadow-xs active:scale-95 ${
+                      className={`font-bold text-xs px-4 py-2 rounded-full transition shadow-xs active:scale-95 ${
                         isApplied
                           ? 'bg-slate-900 text-white'
                           : 'bg-[#CEF839] text-[#18181B] hover:brightness-95'
@@ -275,13 +275,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <h2 className="text-base font-bold text-[#18181B] tracking-tight">Recently Added</h2>
           <button
             onClick={onOpenSearch}
-            className="text-xs font-medium text-[#8E8E9A] hover:text-[#18181B] transition"
+            className="text-xs font-bold text-[#8E8E9A] hover:text-[#18181B] transition"
           >
             See All
           </button>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-4">
           {recentlyAdded.map((job) => {
             const isSaved = savedJobIds.includes(job.id);
             const isApplied = appliedJobIds.includes(job.id);
@@ -291,16 +291,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <article
                   key={job.id}
                   onClick={() => onSelectJob(job)}
-                  className="bg-[#D8F7D9] rounded-3xl p-4 flex items-center justify-between shadow-xs cursor-pointer hover:brightness-[0.99] active:scale-[0.99] transition"
+                  className="bg-[#D8F7D9] rounded-3xl p-5 flex items-center justify-between shadow-xs cursor-pointer hover:brightness-[0.99] active:scale-[0.99] transition"
                 >
                   <div className="flex items-center gap-3.5">
                     <CompanyLogo type={job.logoType} />
                     <div>
-                      <h3 className="text-sm font-bold text-[#18181B] leading-tight">{job.title}</h3>
-                      <p className="text-[12px] font-medium text-[#18181B]/70 mt-0.5">{job.jobCountText}</p>
+                      <h3 className="text-base font-extrabold text-[#18181B] leading-tight">{job.title}</h3>
+                      <p className="text-xs font-bold text-[#18181B]/80 mt-0.5">{job.jobCountText}</p>
                     </div>
                   </div>
-                  <div className="text-[#18181B]/40 pr-1">
+                  <div className="text-[#18181B]/50 pr-1">
                     <svg className="w-5 h-5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
                       <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"></path>
                     </svg>
@@ -313,24 +313,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <article
                 key={job.id}
                 onClick={() => onSelectJob(job)}
-                className="bg-white rounded-3xl p-4 shadow-xs border border-slate-100 flex flex-col gap-3.5 cursor-pointer active:scale-[0.99] transition"
+                className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 flex flex-col gap-4 cursor-pointer active:scale-[0.99] transition"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3.5">
                     <CompanyLogo type={job.logoType} />
                     <div>
-                      <h3 className="text-sm font-bold text-[#18181B] leading-tight">{job.title}</h3>
-                      <p className="text-[11px] font-semibold text-[#8E8E9A] mt-0.5">{job.salary}</p>
+                      <h3 className="text-base font-extrabold text-[#18181B] leading-tight">{job.title}</h3>
+                      <p className="text-xs font-bold text-[#8E8E9A] mt-0.5">{job.salary}</p>
                     </div>
                   </div>
                   <button
                     type="button"
                     aria-label="Save Job"
                     onClick={(e) => onToggleSave(job.id, e)}
-                    className="text-[#8E8E9A] hover:text-[#18181B] p-1 transition-colors"
+                    className="text-[#8E8E9A] hover:text-[#18181B] p-1.5 transition-colors"
                   >
                     <svg
-                      className={`w-4 h-4 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2]'}`}
+                      className={`w-5 h-5 ${isSaved ? 'fill-[#18181B] stroke-[#18181B]' : 'fill-none stroke-current stroke-[2.2]'}`}
                       viewBox="0 0 24 24"
                     >
                       <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
@@ -340,11 +340,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 {/* Footer Tags & Apply Button */}
                 <div className="flex items-center justify-between pt-1">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     {job.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="bg-gray-100/90 text-[#18181B] text-[11px] font-medium px-2.5 py-1 rounded-full"
+                        className="bg-gray-100/90 text-[#18181B] text-xs font-bold px-3 py-1 rounded-full"
                       >
                         {tag}
                       </span>
@@ -354,7 +354,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <button
                     type="button"
                     onClick={(e) => onApplyJob(job, e)}
-                    className={`font-semibold text-xs px-4 py-1.5 rounded-full transition shadow-xs active:scale-95 ${
+                    className={`font-bold text-xs px-4 py-2 rounded-full transition shadow-xs active:scale-95 ${
                       isApplied
                         ? 'bg-slate-900 text-white'
                         : 'bg-[#CEF839] text-[#18181B] hover:brightness-95'
